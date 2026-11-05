@@ -10,11 +10,13 @@ import {
   renderPosts
 } from "./ui.js";
 
-async function displayPosts() {
+const userFilter = document.querySelector("#user-filter");
+
+async function displayPosts(userId = "") {
   showLoading();
 
   try {
-    const posts = await loadPosts();
+    const posts = await loadPosts(userId);
 
     if (posts.length === 0) {
       showEmpty();
@@ -28,4 +30,12 @@ async function displayPosts() {
   }
 }
 
+// Load the initial 10 posts
 displayPosts();
+
+// Listen for changes in the dropdown
+userFilter.addEventListener("change", () => {
+  const selectedUser = userFilter.value;
+
+  displayPosts(selectedUser);
+});

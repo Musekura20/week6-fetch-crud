@@ -7,23 +7,41 @@
     <title>week6-fetch-crud</title>
   </head>
   <body class="bg-gray-100 min-h-screen">
+    <main class="max-w-4xl mx-auto px-6 py-10">
+      <h1 class="text-3xl font-bold text-gray-800 mb-6">CRUD Posts Manager</h1>
 
-  <main class="max-w-4xl mx-auto px-6 py-10">
+      <p id="status-message" class="text-gray-600 mb-6"></p>
 
-    <h1 class="text-3xl font-bold text-gray-800 mb-6">
-      CRUD Posts Manager
-    </h1>
+      <div class="mb-6">
+        <label for="user-filter" class="block text-gray-700 font-medium mb-2">
+          Filter by user
+        </label>
 
-    <p id="status-message" class="text-gray-600 mb-6">
-    </p>
+        <select
+          id="user-filter"
+          class="w-full md:w-64 p-3 border border-gray-300 rounded-lg bg-white"
+        >
+          <option value="">All users (Latest 10 posts)</option>
 
-    <section id="posts-container"
-      class="grid grid-cols-1 md:grid-cols-2 gap-5">
-    </section>
+          <option value="1">User 1</option>
+          <option value="2">User 2</option>
+          <option value="3">User 3</option>
+          <option value="4">User 4</option>
+          <option value="5">User 5</option>
+          <option value="6">User 6</option>
+          <option value="7">User 7</option>
+          <option value="8">User 8</option>
+          <option value="9">User 9</option>
+          <option value="10">User 10</option>
+        </select>
+      </div>
 
-  </main>
+      <section
+        id="posts-container"
+        class="grid grid-cols-1 md:grid-cols-2 gap-5"
+      ></section>
+    </main>
 
-  <script type="module" src="/src/main.js"></script>
-
-</body>
+    <script type="module" src="/src/main.js"></script>
+  </body>
 </html>
