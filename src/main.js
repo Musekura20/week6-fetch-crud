@@ -1,7 +1,12 @@
 
 import "./style.css";
 
-import { loadPosts, createPost, updatePost } from "./posts.js";
+import {
+  loadPosts,
+  createPost,
+  updatePost,
+  deletePost
+} from "./posts.js";
 
 import {
   showLoading,
@@ -68,6 +73,8 @@ createPostForm.addEventListener("submit", async (event) => {
 });
 
 postsContainer.addEventListener("click", async (event) => {
+
+  // EDIT POST
   if (event.target.classList.contains("edit-button")) {
     const postId = Number(event.target.dataset.id);
 
@@ -79,6 +86,26 @@ postsContainer.addEventListener("click", async (event) => {
 
     try {
       const updatedPosts = await updatePost(postId, newTitle.trim());
+
+      renderPosts(updatedPosts);
+
+    } catch (error) {
+      showError(error.message);
+    }
+  }
+
+  // DELETE POST
+  if (event.target.classList.contains("delete-button")) {
+    const postId = Number(event.target.dataset.id);
+
+    const confirmed = confirm("Are you sure you want to delete this post?");
+
+    if (!confirmed) {
+      return;
+    }
+
+    try {
+      const updatedPosts = await deletePost(postId);
 
       renderPosts(updatedPosts);
 

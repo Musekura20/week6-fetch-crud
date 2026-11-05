@@ -41,3 +41,11 @@ export async function updatePost(id, newTitle) {
 
   return posts;
 }
+
+export async function deletePost(id) {
+  await api.delete(`/posts/${id}`);
+
+  posts = posts.filter(post => post.id !== id);
+
+  return posts;
+}
