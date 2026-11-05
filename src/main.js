@@ -1,7 +1,7 @@
 
 import "./style.css";
 
-import { loadPosts, createPost } from "./posts.js";
+import { loadPosts, createPost, updatePost } from "./posts.js";
 
 import {
   showLoading,
@@ -12,6 +12,7 @@ import {
 
 const userFilter = document.querySelector("#user-filter");
 const createPostForm = document.querySelector("#create-post-form");
+const postsContainer = document.querySelector("#posts-container");
 
 async function displayPosts(userId = "") {
   showLoading();
@@ -63,5 +64,26 @@ createPostForm.addEventListener("submit", async (event) => {
 
   } catch (error) {
     showError(error.message);
+  }
+});
+
+postsContainer.addEventListener("click", async (event) => {
+  if (event.target.classList.contains("edit-button")) {
+    const postId = Number(event.target.dataset.id);
+
+    const newTitle = prompt("Enter the new title:");
+
+    if (!newTitle || !newTitle.trim()) {
+      return;
+    }
+
+    try {
+      const updatedPosts = await updatePost(postId, newTitle.trim());
+
+      renderPosts(updatedPosts);
+
+    } catch (error) {
+      showError(error.message);
+    }
   }
 });

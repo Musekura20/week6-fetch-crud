@@ -34,6 +34,13 @@ export function renderPosts(posts) {
       <p class="text-gray-600">
         ${post.body}
       </p>
+
+      <button
+        class="edit-button mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg"
+        data-id="${post.id}"
+      >
+        Edit
+      </button>
     </article>
   `).join("");
 }

@@ -29,3 +29,15 @@ export async function createPost(newPost) {
 
   return posts;
 }
+
+export async function updatePost(id, newTitle) {
+  const updatedPost = await api.patch(`/posts/${id}`, {
+    title: newTitle
+  });
+
+  posts = posts.map(post =>
+    post.id === id ? updatedPost : post
+  );
+
+  return posts;
+}
