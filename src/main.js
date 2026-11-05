@@ -1,15 +1,31 @@
-import { api } from "./http.js";
 
-async function testAPI() {
+import "./style.css";
+
+import { loadPosts } from "./posts.js";
+
+import {
+  showLoading,
+  showError,
+  showEmpty,
+  renderPosts
+} from "./ui.js";
+
+async function displayPosts() {
+  showLoading();
+
   try {
-    const posts = await api.get("/posts?_limit=10");
+    const posts = await loadPosts();
 
-    console.log("Posts received:", posts);
-    console.log("Number of posts:", posts.length);
+    if (posts.length === 0) {
+      showEmpty();
+      return;
+    }
+
+    renderPosts(posts);
 
   } catch (error) {
-    console.error("Request failed:", error.message);
+    showError(error.message);
   }
 }
 
-testAPI();
+displayPosts();

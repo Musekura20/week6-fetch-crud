@@ -6,8 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>week6-fetch-crud</title>
   </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+  <body class="bg-gray-100 min-h-screen">
+
+  <main class="max-w-4xl mx-auto px-6 py-10">
+
+    <h1 class="text-3xl font-bold text-gray-800 mb-6">
+      CRUD Posts Manager
+    </h1>
+
+    <p id="status-message" class="text-gray-600 mb-6">
+    </p>
+
+    <section id="posts-container"
+      class="grid grid-cols-1 md:grid-cols-2 gap-5">
+    </section>
+
+  </main>
+
+  <script type="module" src="/src/main.js"></script>
+
+</body>
 </html>
