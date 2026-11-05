@@ -22,3 +22,10 @@ export async function loadPosts(userId = "") {
   return posts;
 }
 
+export async function createPost(newPost) {
+  const createdPost = await api.post("/posts", newPost);
+
+  posts = [createdPost, ...posts];
+
+  return posts;
+}

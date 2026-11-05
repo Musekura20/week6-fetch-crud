@@ -1,7 +1,7 @@
 
 import "./style.css";
 
-import { loadPosts } from "./posts.js";
+import { loadPosts, createPost } from "./posts.js";
 
 import {
   showLoading,
@@ -11,6 +11,7 @@ import {
 } from "./ui.js";
 
 const userFilter = document.querySelector("#user-filter");
+const createPostForm = document.querySelector("#create-post-form");
 
 async function displayPosts(userId = "") {
   showLoading();
@@ -38,4 +39,29 @@ userFilter.addEventListener("change", () => {
   const selectedUser = userFilter.value;
 
   displayPosts(selectedUser);
+});
+
+//listen for form submission
+createPostForm.addEventListener("submit", async (event) => {
+  console.log("Form submitted!");
+  event.preventDefault();
+
+  const formData = new FormData(createPostForm);
+
+  const newPost = {
+    title: formData.get("title"),
+    body: formData.get("body"),
+    userId: Number(formData.get("userId"))
+  };
+
+  try {
+    const updatedPosts = await createPost(newPost);
+
+    renderPosts(updatedPosts);
+
+    createPostForm.reset();
+
+  } catch (error) {
+    showError(error.message);
+  }
 });

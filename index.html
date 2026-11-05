@@ -36,6 +36,50 @@
         </select>
       </div>
 
+      <form
+        id="create-post-form"
+        class="bg-white p-6 rounded-lg shadow-sm mb-8"
+      >
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Create a New Post</h2>
+
+        <div class="mb-4">
+          <label for="post-title" class="block text-gray-700 font-medium mb-2">
+            Post Title
+          </label>
+
+          <input
+            type="text"
+            id="post-title"
+            name="title"
+            placeholder="Enter post title"
+            required
+            class="w-full p-3 border border-gray-300 rounded-lg"
+          />
+        </div>
+
+        <div class="mb-4">
+          <label for="post-body" class="block text-gray-700 font-medium mb-2">
+            Post Body
+          </label>
+
+          <textarea
+            id="post-body"
+            name="body"
+            placeholder="Write your post here"
+            required
+            rows="4"
+            class="w-full p-3 border border-gray-300 rounded-lg"
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          class="bg-purple-700 text-white px-5 py-3 rounded-lg hover:bg-purple-800"
+        >
+          Create Post
+        </button>
+      </form>
+
       <section
         id="posts-container"
         class="grid grid-cols-1 md:grid-cols-2 gap-5"
